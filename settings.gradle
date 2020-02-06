@@ -1,0 +1,2 @@
+rootProject.name = 'wession'
+include "ws_core","ws_server","ws_agent","wow_server","wow_client","ws_admin","ws_repare"

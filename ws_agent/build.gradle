@@ -1,0 +1,4 @@
+dependencies {
+	compile project(':ws_core')
+}
+

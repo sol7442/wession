@@ -1,0 +1,13 @@
+dependencies {
+	compile project(':ws_core')
+	compile project(':wow_server')
+	
+	compile files('../libs/xbean.jar')
+	compile files('../libs/xmlbeans-qname.jar')
+	compile files('../libs/jsr173_1.0_api.jar')
+	
+	compile files('../libs/wession_config_1.0.2.jar')
+	compile files('../libs/slf4j-api-1.7.7.jar')
+	compile files('../libs/log4j-1.2.17.jar')
+}
+

@@ -1,0 +1,7 @@
+dependencies {
+	compile files('../libs/org.apache.httpcomponents.httpclient_4.5.3.jar')
+	compile files('../libs/org.apache.httpcomponents.httpcore_4.4.6.jar')
+	compile files('../libs/j2ee.jar')
+	
+}
+

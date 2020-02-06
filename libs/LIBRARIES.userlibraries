@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="LIBRARIES" systemlibrary="false">
+        <archive path="/ws_server/lib/log4j-1.2.17.jar"/>
+        <archive path="/ws_server/lib/slf4j-api-1.7.7.jar"/>
+        <archive path="/ws_server/lib/slf4j-log4j12-1.7.7.jar"/>
+        <archive path="/ws_server/lib/jsr173_1.0_api.jar"/>
+        <archive path="/ws_server/lib/xbean.jar"/>
+        <archive path="/ws_server/lib/xmlbeans-qname.jar"/>
+    </library>
+</eclipse-userlibraries>

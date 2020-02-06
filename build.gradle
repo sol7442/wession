@@ -1,0 +1,41 @@
+version = '1.0.07_01'
+
+allprojects{
+	apply plugin: 'java'
+	
+	sourceCompatibility = 1.5
+	targetCompatibility = 1.5
+	
+	compileJava.options.encoding = 'UTF-8'
+
+	repositories {	
+		jcenter();
+		mavenCentral()
+		maven {url "https://plugins.gradle.org/m2/"}
+		maven {url "http://repo.mycompany.com/maven2"}
+	}
+}
+
+subprojects {
+	task initSourceFolders {
+	    sourceSets*.java.srcDirs*.each {
+	        if( !it.exists() ) {
+	            it.mkdirs()
+	        }
+	    }
+	 
+	    sourceSets*.resources.srcDirs*.each {
+	        if( !it.exists() ) {
+	            it.mkdirs()
+	        }
+	    }
+	}
+	
+	dependencies {
+		compile group: 'org.codehaus.janino', name: 'janino', version: '3.0.8'
+		compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+		
+	    testImplementation 'junit:junit:4.12'
+	}
+}
+

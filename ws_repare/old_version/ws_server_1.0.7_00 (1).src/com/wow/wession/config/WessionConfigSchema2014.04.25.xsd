@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.wow.com/wession/config" xmlns:tns="http://www.wow.com/wession/config" elementFormDefault="qualified">
+	
+	<!-- Abstract Schema -->
+	<complexType name="ServerConfig" abstract="true">		
+			<attribute name="name" type="string" />
+			<attribute name="address" type="string"/>
+			<attribute name="port" type="int"/>
+			<attribute name="ThreadSize" type="int"/>
+	</complexType>
+	
+
+	<!-- Component Schema -->	
+	<element name="WessionConfiguration" >
+		<complexType>
+			<sequence>
+				<element ref="tns:SessionManagerConfig"/>
+				<element ref="tns:ClusterServerConfig"/>
+			</sequence>
+		</complexType>	
+	</element>
+	
+	<!-- 세션 메니저 -->
+	<element name="SessionManagerConfig" >
+		<complexType>
+		<sequence>
+				<element ref="tns:ClusterManagerConfig"/>
+				<element ref="tns:JournalManagerConfig"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ClusterManagerConfig" >
+	</element>	
+	<element name="JournalManagerConfig" >
+	</element>	
+	<!-- 클러스터 서비스 -->
+	<element name="ClusterServerConfig" >
+		<complexType>
+			<complexContent>
+				<extension base="tns:ServerConfig">
+					<sequence minOccurs="0" maxOccurs="unbounded">
+						<element name="ClusterNodeConfig">
+							<complexType>
+								<complexContent>
+									<extension base="tns:ServerConfig">
+										<attribute name="index" type="int"/>
+									</extension>
+								</complexContent>
+							</complexType>
+						</element>
+					</sequence>
+				</extension>		
+			</complexContent>
+		</complexType>
+	</element>
+</schema>
+	
+<!-- 
+	<element name="SessionManagerConfig" type="tns:SessionManagerConfig"/>
+	<element name="ManagerServerConfig"  type="tns:ManagerServerConfig"/>
+	<element name="ClusterServerConfig"  type="tns:ClusterServerConfig"/>
+	<element name="SessionServerConfig"  type="tns:SessionServerConfig"/>
+	
+	<complexType name="ManagerServerConfig">
+		<complexContent>
+			<extension base="tns:ServerConfig">				
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SessionServerConfig">
+		<complexContent>
+			<extension base="tns:ServerConfig">				
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="SessionManagerConfig">
+		<complexContent>
+			<extension base="tns:ClusterSessionManagerConfig">
+				<sequence>
+					<element name="Repository" type="tns:JouralRepositoryConfig"/>
+				</sequence>
+			</extension>		
+		</complexContent>
+	</complexType>
+
+	<complexType name="ClusterSessionManagerConfig">
+		<complexContent>
+			<extension base="tns:ServerConfig">
+				<sequence minOccurs="0" maxOccurs="unbounded">
+					<element name="Cluster" type="tns:ClusterRepositoryConfig"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>	
+	
+	<complexType name="JouralRepositoryConfig">
+		<complexContent>
+			<extension base="tns:SessionRepositoryConfig">
+				<sequence>
+					<element name="JouralFileName" type="string"/>
+				</sequence>
+			</extension>						
+		</complexContent>
+	</complexType>
+ -->	

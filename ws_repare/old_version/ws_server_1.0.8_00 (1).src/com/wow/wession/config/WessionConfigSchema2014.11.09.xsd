@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.wow.com/wession/config" xmlns:tns="http://www.wow.com/wession/config" elementFormDefault="qualified">
+	
+	<!-- Abstract Schema -->
+	<complexType name="ServerConfig" abstract="true">		
+			<attribute name="name" type="string" />
+			<attribute name="address" type="string"/>
+			<attribute name="port" type="int"/>
+			<attribute name="MinThreadSize" type="int"/>
+			<attribute name="MaxThreadSize" type="int"/>
+			<attribute name="IdleMilliTime" type="int"/>
+	</complexType>
+	
+
+	<!-- Component Schema -->	
+	<element name="WessionConfiguration" >
+		<complexType>
+			<sequence>
+				<element ref="tns:SessionManagerConfig"/>
+				<element ref="tns:ClusterServerConfig"/>
+			</sequence>
+		</complexType>	
+	</element>
+	
+	<!-- 세션 메니저 -->
+	<element name="SessionManagerConfig" >
+		<complexType>
+		<sequence>
+				<element ref="tns:ClusterManagerConfig"/>
+				<element ref="tns:JournalManagerConfig"/>
+			</sequence>
+			<attribute name="MinThreadSize" type="int"/>
+			<attribute name="MaxThreadSize" type="int"/>
+			<attribute name="IdleMilliTime" type="int"/>
+			<attribute name="SessionExipreTime" type="int" />
+		</complexType>
+	</element>
+	
+	<element name="ClusterManagerConfig" >
+		<complexType>
+			<sequence>
+				<element name="CheckPeriodTime" type="int" />
+				<element name="CheckStartTime" type="int" />
+			</sequence>
+			<attribute name="Useable" type="boolean"/>
+		</complexType>
+	</element>	
+	<element name="JournalManagerConfig" >
+		<complexType>
+			<sequence>
+				<element name="DataDirectory" type="string" />
+				<element name="BackupPeriodTime" type="int" />
+				<element name="BackupDelayTime" type="int" />
+			</sequence>
+			<attribute name="Useable" type="boolean"/>
+		</complexType>
+	</element>	
+	<!-- 클러스터 서비스 -->
+	<element name="ClusterServerConfig" >
+		<complexType>
+			<complexContent>
+				<extension base="tns:ServerConfig">
+					<sequence minOccurs="0" maxOccurs="unbounded">
+						<element name="ClusterNodeConfig">
+							<complexType>
+								<attribute name="name" type="string" />
+								<attribute name="address" type="string"/>
+								<attribute name="port" type="int"/>
+								<attribute name="index" type="int"/>		
+							</complexType>
+						</element>
+					</sequence>
+				</extension>		
+			</complexContent>
+		</complexType>
+	</element>
+</schema>
+	
