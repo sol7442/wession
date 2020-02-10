@@ -1,3 +1,27 @@
+
+
+jar{
+	version = rootProject.version;
+	from "../ws_core/bin/main"
+	from "../wow_server/bin/main"
+}
+
+task sourcesJar(group:'build',type: Jar) {
+	classifier = 'sources'
+	version = rootProject.version;
+	
+	from "../ws_core/bin/main"
+	from "../wow_server/bin/main"
+	from sourceSets.main.output
+	from sourceSets.main.allSource
+}
+
+task copyJar(group:'build', type:Copy){
+    from jar
+    from sourcesJar
+    into "../dist"
+}
+
 dependencies {
 	compile project(':ws_core')
 	compile project(':wow_server')
@@ -9,5 +33,4 @@ dependencies {
 	compile files('../libs/wession_config_1.0.2.jar')
 	compile files('../libs/slf4j-api-1.7.7.jar')
 	compile files('../libs/log4j-1.2.17.jar')
-}
-
+}                                                                  

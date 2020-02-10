@@ -69,7 +69,7 @@ public class JournalManager implements IRepository, IManagerState {
 		}
 		syslogger.info("journal end  ------------------------>");
 		
-		// ���꼸留� �뜡�봽 �뒪耳�以꾨윭 �떆�옉
+		// 저널링 덤프 스케줄러 시작
 		scheduler.scheduleAtFixedRate(new Runnable() {
 			public void run() {
 				dump();
@@ -137,17 +137,6 @@ public class JournalManager implements IRepository, IManagerState {
 		weslogger.debug("expire : key[{}]-{}",key,watch.stop());
 
 	}
-	
-	public void remove(String key) {
-		if(!useable){return;}
-		
-		StopWatch  watch = new StopWatch(TimeUnit.NANOSECONDS);
-		JournalEntity entity = new JournalEntity(EXPIRE);
-		entity.addData(key);
-		this.journalFile.append(entity);
-		weslogger.debug("remove : key[{}]-{}",key,watch.stop());
-	}
-	
 	public void add(final String parent,final ISession session) {
 		if(!useable){return;}
 		
@@ -197,6 +186,4 @@ public class JournalManager implements IRepository, IManagerState {
 		this.journalFile.append(entity);
 		weslogger.debug("clear:-{}",watch.stop());
 	}
-
-
 }

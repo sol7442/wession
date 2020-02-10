@@ -36,7 +36,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 	private ClusterManager cluster_mgr;
 	private Properties mgr_properties = new Properties();
 
-	private int sessionExpireTime = 1000*60*30; // 湲곕낯 30遺�
+	private int sessionExpireTime = 1000*60*30; // 기본 30분
 	private ExecutorService executers = null;
 
 	private int minThreadSize = 1;
@@ -134,8 +134,8 @@ public class WessionSessionManager implements IRepository , IManagerState {
 		return repository.getAll();
 	}
 	/*********************************************************************************************************
-	 * �꽭�뀡 硫붾땲���쓽 �냽�꽦 �젙蹂대�� 愿�由ы븳�떎.
-	 * �냽�꽦�쓣 �궘�젣�븷 �븣�뒗 value 媛믪뿉 怨듬갚 �삉�뒗 �꼸 媛믪쓣 �꽕�젙�븳�떎.
+	 * 세션 메니저의 속성 정보를 관리한다.
+	 * 속성을 삭제할 때는 value 값에 공백 또는 널 값을 설정한다.
 	 *********************************************************************************************************/
 	public void setProperty(final String key, final String value){
 		setProperty(key, value,true);
@@ -165,7 +165,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 	}
 
 	/*********************************************************************************************************
-	 * �떊洹� �꽌踰� �꽭�뀡�쓣 ���옣�븳�떎.
+	 * 신규 서버 세션을 저장한다.
 	 * .
 	 *********************************************************************************************************/
 	public void create(final ISession session){
@@ -193,7 +193,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 		}
 	}
 	/*********************************************************************************************************
-	 *  �꽌踰� �꽭�뀡�쓣 �궘�젣�븳�떎.
+	 *  서버 세션을 삭제한다.
 	 * .
 	 *********************************************************************************************************/
 	public void expire(String key){
@@ -219,23 +219,9 @@ public class WessionSessionManager implements IRepository , IManagerState {
 			weslogger.error("expire : {}-{}",key,e);
 		}
 	}
-	public void remove(final String key,final boolean cluster){
-		final StopWatch  watch = new StopWatch(TimeUnit.NANOSECONDS);
-			try{
-			repository.remove(key);
-			journal_mgr.remove(key);
-			if(cluster ){
-				cluster_mgr.remove(key);
-			}
-		}catch (RuntimeException e) {
-			weslogger.error("remove : {}-{}",key,e);
-		}finally{
-			weslogger.info("remove : key[{}]-{}",key,watch.stop());
-		}
-	}
 
 	/*********************************************************************************************************
-	 *  �뿉�씠�쟾�듃 �꽭�뀡�쓣 異붽��븳�떎.
+	 *  에이전트 세션을 추가한다.
 	 * .
 	 *********************************************************************************************************/
 	public void add(String parent, ISession session){
@@ -264,7 +250,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 		}
 	}
 	/*********************************************************************************************************
-	 *  �뿉�씠�쟾�듃 �꽭�뀡�쓣 �궘�젣�븳�떎.
+	 *  에이전트 세션을 삭제한다.
 	 * .
 	 *********************************************************************************************************/
 	public void remove(String parent, String key){
@@ -293,7 +279,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 		}
 	}
 	/*********************************************************************************************************
-	 *  �꽭�뀡�쓽 �냽�꽦�쓣 �꽕�젙�븳�떎.
+	 *  세션의 속성을 설정한다.
 	 * .
 	 *********************************************************************************************************/
 	public void set(String parent,String key,Object object){
@@ -323,7 +309,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 	}
 
 	/*********************************************************************************************************
-	 *  �꽭�뀡�쓽 �냽�꽦�쓣 �궘�젣�븳�떎..
+	 *  세션의 속성을 삭제한다..
 	 * .
 	 *********************************************************************************************************/
 	public void delete(String parent,String key){
@@ -353,7 +339,7 @@ public class WessionSessionManager implements IRepository , IManagerState {
 	}
 
 	/*********************************************************************************************************
-	 *  �꽭�뀡 ���옣�냼瑜� 珥덇린�솕�븳�떎.
+	 *  세션 저장소를 초기화한다.
 	 * .
 	 *********************************************************************************************************/
 	public void clear() {

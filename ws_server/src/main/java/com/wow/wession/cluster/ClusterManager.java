@@ -234,20 +234,6 @@ public class ClusterManager implements IRepository , IManagerState{
 		}
 		weslogger.debug("expire : key[{}]-{} ({})",key,watch.stop(),cluster_list.size());
 	}
-	
-	public void remove(String key) {
-		StopWatch  watch = new StopWatch(TimeUnit.NANOSECONDS);
-
-		ClusterEntity entity = new ClusterEntity(EXPIRE);
-		entity.addData(key);
-
-		List<ClusterNode> cluster_list = getNodeList();
-		for (ClusterNode node : cluster_list) {
-			node.send(entity);
-		}
-		weslogger.debug("remove : key[{}]-{} ({})",key,watch.stop(),cluster_list.size());
-	}
-	
 	public void add(String parent,ISession session) {
 		StopWatch  watch = new StopWatch(TimeUnit.NANOSECONDS);
 
@@ -315,6 +301,4 @@ public class ClusterManager implements IRepository , IManagerState{
 		}
 		weslogger.debug("clear:-{} ({})",watch.stop(),cluster_list.size());
 	}
-
-
 }

@@ -1,0 +1,99 @@
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    }
+}
+
+
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'eclipse-wtp'
+
+project.webAppDirName = 'WebContent'
+eclipse {
+    classpath {
+        downloadSources = true
+        defaultOutputDir = file("WebContent/WEB-INF/classes" )  // 컴파일 후 class 파일이 저장되는 폴더.
+      
+        // src/test/java, src/test/resources의 output 디렉토리를 지정한다.
+        file {
+            whenMerged { cp ->
+                cp.entries.findAll{ entry ->
+                    entry.kind == 'src' && entry.path.startsWith( "src/test/")
+                }*.output = "build/test-classes"
+            }
+        }
+    }
+    // workspace/{project}/.settings 폴더를 설정한다.
+    wtp {
+        // .settings 폴더의 org.eclipse.wst.common.component 파일을 설정한다.
+        component {
+            //contextPath = project.name // 원하는 contextPath 지정. 단, 빈 컨텍스트패스는 "/" 로 지정
+            contextPath = "WebContent" // 원하는 contextPath 지정. 단, 빈 컨텍스트패스는 "/" 로 지정
+        }
+        // .settings 폴더의 org.eclipse.wst.common.project.facet.core.xml 파일을 설정한다.
+        facet {
+            facet name: "jst.web" , version: "2.5" // Servlet Spec Version 지정
+            facet name: "jst.java" , version: "1.6" // Java Version 지정, 1.7 ...
+            facet name: 'wst.jsdt.web' , version: '1.0'   // Javascript 지정, 1.0
+        }
+    }
+}
+
+task createDir(){
+	println "create source directory: $it"
+}
+
+task initProject(group:'build setup', description: 'initialize project') {
+    [webAppDir, new File(webAppDir, '/WEB-INF' ), new File(webAppDir, '/META-INF' )].each {
+    	if (!it.exists()) {
+    		println "create source directory: $it"
+    		it.mkdirs()
+    	}
+    }
+}
+
+
+jar{
+	version = rootProject.version;
+    
+    from "../ws_core/bin/main"
+	from "../wow_server/bin/main"
+	
+}
+
+task copyJar(group:'build', type:Copy){
+	
+
+}
+
+dependencies {
+	compile project(':ws_core')
+	compile project(':wow_server')
+	
+	compile files('../libs/xbean.jar')
+	compile files('../libs/xmlbeans-qname.jar')
+	compile files('../libs/jsr173_1.0_api.jar')
+	
+	compile files('../libs/wession_config_1.0.2.jar')
+	compile files('../libs/slf4j-api-1.7.7.jar')
+	compile files('../libs/log4j-1.2.17.jar')
+	
+    def tomcatVersion = '8.0.42'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+
+tomcat {
+    httpPort = 8080
+    //httpsPort = 8091
+    //enableSSL = true
+    contextPath = 'ws_admin'
+}                                                                  

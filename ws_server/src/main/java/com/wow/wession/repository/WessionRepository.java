@@ -33,10 +33,6 @@ public class WessionRepository{
 		}
 		return ref_session;
 	}
-	
-	public void remove(String key) {
-		expire(key);		
-	}
 
 	public void clear() {
 		memoryRepository.clear();
@@ -70,7 +66,5 @@ public class WessionRepository{
 //	public ISession[] toArray(){
 //		return getAll().toArray(new ISession[0]);
 //	}
-
-
 }
 
