@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j="http://jakarta.apache.org/log4j/"> 
+
+
+<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender"> 
+	<layout class="org.apache.log4j.PatternLayout"> 
+		<param name="ConversionPattern" value="[%13F:%L] %m%n" /> 
+	</layout> 
+</appender> 
+
+<appender name="SYSTEM_LOG" class="org.apache.log4j.DailyRollingFileAppender"> 
+	<param name="File" value="${WS_LOG}/${WS_INS}_SystemLog.log" /> 
+	<param name="Encoding" value="UTF-8" /> 
+	<param name="DatePattern" value="'.'yyyy-MM-dd" /> 
+	<param name="ImmediateFlush" value="true" /> 
+	<param name="Append" value="true" /> 
+	<layout class="org.apache.log4j.PatternLayout"> 
+		<param name="ConversionPattern" value="[%d{HH:mm:ss}][%C{1}.%M-%L][%p] %m%n" /> 
+	</layout> 
+</appender> 
+
+<appender name="POLICY_LOG" class="org.apache.log4j.DailyRollingFileAppender"> 
+	<param name="File" value="${WS_LOG}/${WS_INS}_Policy.log" /> 
+	<param name="Encoding" value="UTF-8" /> 
+	<param name="DatePattern" value="'.'yyyy-MM-dd" /> 
+	<param name="ImmediateFlush" value="true" /> 
+	<param name="Append" value="true" /> 
+	<layout class="org.apache.log4j.PatternLayout"> 
+		<param name="ConversionPattern" value="[%d{HH:mm:ss}][%p] %m%n" /> 
+	</layout> 
+</appender> 
+
+<appender name="PROCESS_LOG" class="org.apache.log4j.DailyRollingFileAppender"> 
+	<param name="File" value="${WS_LOG}/${WS_INS}_Process.log" /> 
+	<param name="Encoding" value="UTF-8" /> 
+	<param name="DatePattern" value="'.'yyyy-MM-dd" /> 
+	<param name="ImmediateFlush" value="true" /> 
+	<param name="Append" value="true" /> 
+	<layout class="org.apache.log4j.PatternLayout"> 
+		<param name="ConversionPattern" value="[%d{HH:mm:ss}][%p]%m%n" /> 
+	</layout> 
+</appender> 
+
+<appender name="WESSION_LOG" class="org.apache.log4j.DailyRollingFileAppender"> 
+	<param name="File" value="${WS_LOG}/${WS_INS}_Wession.log" /> 
+	<param name="Encoding" value="UTF-8" /> 
+	<param name="DatePattern" value="'.'yyyy-MM-dd" /> 
+	<param name="ImmediateFlush" value="true" /> 
+	<param name="Append" value="true" /> 
+	<layout class="org.apache.log4j.PatternLayout"> 
+		<param name="ConversionPattern" value="[%d{HH:mm:ss}][%C{1}.%M-%L][%p] %m%n" /> 
+	</layout> 
+</appender> 
+
+
+
+<logger name="system" additivity="false">
+	<level value="INFO"/>
+	<appender-ref ref="SYSTEM_LOG"/>	
+</logger>
+<logger name="policy" additivity="false">
+	<level value="INFO"/>
+	<appender-ref ref="POLICY_LOG"/>	
+</logger>
+<logger name="process" additivity="false">
+	<level value="INFO"/>
+	<appender-ref ref="PROCESS_LOG"/>	
+</logger>
+<logger name="wession" additivity="false">
+	<level value="INFO"/>
+	<appender-ref ref="WESSION_LOG"/>	
+</logger>
+
+<root> 
+	<level value="INFO" />
+	<appender-ref ref="CONSOLE"/> 
+</root> 
+
+
+</log4j:configuration>

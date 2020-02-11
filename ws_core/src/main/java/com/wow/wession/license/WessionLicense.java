@@ -80,13 +80,9 @@ public class WessionLicense implements Serializable {
 			printLicense();
 			
 			bRes = true;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} 
 		return bRes;
 	}
 	private void printLicense() {

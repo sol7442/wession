@@ -9,6 +9,8 @@ public interface IRepository extends IEntityState{
 	public void expire(String key );
 	public void add(String parent, ISession session);
 	public void remove(String parent, String key);
+	//public void remove(String key, boolean cluster) ;
+	public void remove(String key) ;
 	public void set(String parent,String key, Object object);
 	public void delete(String parent, String key);
 	public void clear();

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" class="login_page">
+ <head>
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <title>WESSION :: 메리츠화재</title>
+
+  <link rel="stylesheet" type="text/css" href="dist/css/metro-bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="dist/css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="dist/css/style.css" />
+ </head>
+ <body>
+	<div class="login_box" style="margin-top: -188px;" >
+		<form method="post" id="login_form" action="./authProcess.jsp">
+			<div class="form-group">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Sign in to Wession Admin</h3>
+					</div>
+					<div class="panel-body" style="padding: 30px 40px 0;">
+						<div class="input-group">
+							<span class="input-group-addon" data-toggle="tooltip" data-placement="left" title="Enter Login ID"><i class="icon-fixed-width icon-user"></i></span>
+							<input type="text" name="user_id" id="user_id" class="form-control" placeholder="Enter User ID"  data-container="body" data-toggle="popover" data-placement="right" data-content="Enter Login ID" data-trigger="manual"/>
+						</div>
+						<br />
+						<div class="input-group">
+							<span class="input-group-addon" data-toggle="tooltip" data-placement="left" title="Enter Login Password"><i class="icon-fixed-width icon-lock"></i></span>
+							<input type="password" name="user_passwd" id="user_password" class="form-control" placeholder="Enter User Password" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter User Password" data-trigger="manual"/>
+						</div>
+						<br />
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="y" name="remember" id="remember"/>
+								Remember me
+							</label>
+						</div>
+					</div>
+					<div class="panel-footer" style="text-align:right;">
+						<input class="btn btn-lg btn-danger" id="sign_in" type="submit" value="Sign In" />
+					</div>
+
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--[if lt IE 9]>
+		<script src="dist/js/html5shiv.js"></script>
+	<![endif]-->
+	<script src="dist/js/jquery-1.11.1.min.js"></script>
+	<script src="dist/plugin/validation/jquery.validate.js" ></script>
+	<script src="dist/js/bootstrap.js"></script>
+	<script src="dist/plugin/wession/wession.js"></script>
+	<script>
+		$(function(){
+			$("[data-toggle=tooltip]").tooltip();
+			$("#login_form").validate({
+				rules: {
+					user_id: {
+						required: true
+					},
+					user_passwd: {
+						required: true
+					}
+				},
+				messages : {
+					user_id: {
+						required: '아이디를 입력하세요'
+					},
+					user_passwd: {
+						required: '비밀번호를 입력하세요'
+					}
+				}
+			});
+		});
+	</script>
+ </body>
+</html>

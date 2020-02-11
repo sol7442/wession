@@ -1,4 +1,4 @@
-project.version = '1.0.7_01'
+project.version = '1.0.7_02'
 
 allprojects{
 	apply plugin: 'java'

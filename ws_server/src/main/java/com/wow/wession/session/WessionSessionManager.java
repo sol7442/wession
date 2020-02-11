@@ -8,7 +8,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -253,10 +252,28 @@ public class WessionSessionManager implements IRepository , IManagerState {
 	 *  에이전트 세션을 삭제한다.
 	 * .
 	 *********************************************************************************************************/
+	public void remove(String key) {
+		
+	}
+	
 	public void remove(String parent, String key){
 		WessionServerSession server_session =  (WessionServerSession)repository.get(parent);
 		if(server_session != null){
 			server_session.removeAgentSession(key,false);
+		}
+	}
+	public void remove(String key, boolean cluster) {
+		final StopWatch  watch = new StopWatch(TimeUnit.NANOSECONDS);
+		try {
+			this.repository.expire(key);
+			this.journal_mgr.remove(key);
+			if(!cluster)
+				this.cluster_mgr.remove(key);
+
+		}catch (Exception e) {
+			this.weslogger.error("remove : {}-{}", key, e);
+		}finally {
+			this.weslogger.info("remove : key[{}]-{}", key, Long.valueOf(watch.stop()));
 		}
 	}
 	public void remove(final String parent, final String key, final boolean cluster) {

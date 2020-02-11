@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:WessionConfiguration xmlns:con="http://www.wow.com/wession/config">
+    <con:SessionManagerConfig MinThreadSize="100" MaxThreadSize="100" IdleMilliTime="10000" SessionExipreTime="1800000">
+        <con:ClusterManagerConfig>
+            <con:CheckPeriodTime>5000</con:CheckPeriodTime>
+            <con:CheckStartTime>1000</con:CheckStartTime>
+        </con:ClusterManagerConfig>
+        <con:JournalManagerConfig Useable="false">
+            <con:DataDirectory>C:\\workspace\\WessionMeritz_C_Server\\JournalData</con:DataDirectory>
+            <con:BackupPeriodTime>600000</con:BackupPeriodTime>
+            <con:BackupDelayTime>60000</con:BackupDelayTime>
+        </con:JournalManagerConfig>
+    </con:SessionManagerConfig>
+    <con:ClusterServerConfig name="MERITZ1" address="127.0.0.1" port="10611" MinThreadSize="100" MaxThreadSize="100" IdleMilliTime="10000">
+        <con:ClusterNodeConfig name="MERITZ2" address="127.0.0.1" port="10612"/>
+    </con:ClusterServerConfig>
+</con:WessionConfiguration>

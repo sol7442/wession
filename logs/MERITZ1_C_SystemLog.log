@@ -1,0 +1,143 @@
+[16:35:29][WessionDaemon.printStartLog-179][INFO] ***********************************************************************
+[16:35:29][WessionDaemon.printStartLog-181][INFO] System Start [MERITZ1_C] : 2020-02-11 16:35:29 (KST +0900)
+[16:35:29][WessionDaemon.printStartLog-182][INFO] ***********************************************************************
+[16:35:29][WessionDaemon.initializeServer-124][INFO] Wession Service initialize ****************
+[16:35:29][ClusterService.initialize-49][INFO] Cluster Server Configuration 
+<xml-fragment name="MERITZ1_C" address="127.0.0.1" port="20611" MinThreadSize="100" MaxThreadSize="100" IdleMilliTime="10000" xmlns:con="http://www.wow.com/wession/config">
+    <con:ClusterNodeConfig name="MERITZ2_C" address="127.0.0.1" port="20612"/>
+</xml-fragment>
+[16:35:29][WessionDaemon.initializeServer-125][INFO] Wession Cluster Server initializeServer : true
+[16:35:29][WessionDaemon.initializeServer-126][INFO] Wession Manager Server initializeServer : true
+[16:35:29][WessionDaemon.initializeServer-127][INFO] Wession Session Server initializeServer : true
+[16:35:29][ClusterManager.initialize-45][INFO] ******** Cluster Manager Node Regist ********
+[16:35:30][ClusterNode.send-70][ERROR] Cluster Node Send Error : {}
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.wow.client.socket.SocketConnection.connect(SocketConnection.java:57)
+	at com.wow.client.socket.SocketConnection.<init>(SocketConnection.java:20)
+	at com.wow.wession.pool.ConnectionHandler.createConnection(ConnectionHandler.java:27)
+	at com.wow.wession.pool.BasicConnectionPool.get(BasicConnectionPool.java:28)
+	at com.wow.wession.cluster.ClusterNode.send(ClusterNode.java:61)
+	at com.wow.wession.cluster.ClusterManager.register(ClusterManager.java:85)
+	at com.wow.wession.cluster.ClusterManager.initialize(ClusterManager.java:58)
+	at com.wow.wession.WessionDaemon.initializeComponent(WessionDaemon.java:108)
+	at com.wow.wession.WessionDaemon.initialize(WessionDaemon.java:79)
+	at org.apache.jsp.initWessionServer_jsp.jspInit(initWessionServer_jsp.java:79)
+	at org.apache.jasper.runtime.HttpJspBase.init(HttpJspBase.java:48)
+	at org.apache.jasper.servlet.JspServletWrapper.getServlet(JspServletWrapper.java:179)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:375)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.init(JspServlet.java:138)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1227)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1140)
+	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:1027)
+	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:5038)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5348)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1408)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1398)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[16:35:30][ClusterManager.register-99][INFO] cluster node registry failed   : MERITZ1_C-MERITZ2_C
+[16:35:30][ClusterManager.initialize-60][INFO] ******** Cluster Manager Node Regist ********
+[16:35:30][ClusterManager.start-181][INFO] Cluster Manager Star *************
+[16:35:30][JournalManager.start-64][INFO] Start Wession Journal manager
+[16:35:30][JournalManager.start-66][INFO] journal start ------------------------>
+[16:35:30][JournalManager.jounralByNetwork-93][INFO] Jurnal 0 : 0
+[16:35:30][JournalFile.readJournalEntity-233][WARN] read error : MERITZ1_C_B 
+[16:35:30][JournalFile.getAll-208][INFO] dump repository size : 0 - 0
+[16:35:30][JournalManager.jounralByFile-102][INFO] Jurnal 0 : 0
+[16:35:30][JournalManager.start-70][INFO] journal end  ------------------------>
+[16:35:30][WessionDaemon.printStartLog-179][INFO] ***********************************************************************
+[16:37:58][WessionDaemon.printStopLog-187][INFO] ***********************************************************************
+[16:37:58][WessionDaemon.printStopLog-189][INFO] System Stop [MERITZ1_C] : 2020-02-11 16:37:58 (KST +0900)
+[16:37:58][WessionDaemon.printStopLog-190][INFO] ***********************************************************************
+[16:37:58][ClusterService.close-79][INFO] Service Closed : MERITZ1_C Cluster
+[16:37:58][WessionDaemon.stop-165][INFO] Wession Cluster Server[MERITZ1_C Cluster] Service closed
+[16:37:58][ClusterManager.stop-191][INFO] Cluster Manager Stop ************
+[16:37:58][WessionDaemon.printStopLog-187][INFO] ***********************************************************************
+[16:38:32][WessionDaemon.printStartLog-179][INFO] ***********************************************************************
+[16:38:32][WessionDaemon.printStartLog-181][INFO] System Start [MERITZ1_C] : 2020-02-11 16:38:32 (KST +0900)
+[16:38:32][WessionDaemon.printStartLog-182][INFO] ***********************************************************************
+[16:38:32][WessionDaemon.initializeServer-124][INFO] Wession Service initialize ****************
+[16:38:32][ClusterService.initialize-49][INFO] Cluster Server Configuration 
+<xml-fragment name="MERITZ1_C" address="127.0.0.1" port="20611" MinThreadSize="100" MaxThreadSize="100" IdleMilliTime="10000" xmlns:con="http://www.wow.com/wession/config">
+    <con:ClusterNodeConfig name="MERITZ2_C" address="127.0.0.1" port="20612"/>
+</xml-fragment>
+[16:38:32][WessionDaemon.initializeServer-125][INFO] Wession Cluster Server initializeServer : true
+[16:38:32][WessionDaemon.initializeServer-126][INFO] Wession Manager Server initializeServer : true
+[16:38:32][WessionDaemon.initializeServer-127][INFO] Wession Session Server initializeServer : true
+[16:38:32][ClusterManager.initialize-45][INFO] ******** Cluster Manager Node Regist ********
+[16:38:33][ClusterNode.send-70][ERROR] Cluster Node Send Error : {}
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.wow.client.socket.SocketConnection.connect(SocketConnection.java:57)
+	at com.wow.client.socket.SocketConnection.<init>(SocketConnection.java:20)
+	at com.wow.wession.pool.ConnectionHandler.createConnection(ConnectionHandler.java:27)
+	at com.wow.wession.pool.BasicConnectionPool.get(BasicConnectionPool.java:28)
+	at com.wow.wession.cluster.ClusterNode.send(ClusterNode.java:61)
+	at com.wow.wession.cluster.ClusterManager.register(ClusterManager.java:85)
+	at com.wow.wession.cluster.ClusterManager.initialize(ClusterManager.java:58)
+	at com.wow.wession.WessionDaemon.initializeComponent(WessionDaemon.java:108)
+	at com.wow.wession.WessionDaemon.initialize(WessionDaemon.java:79)
+	at org.apache.jsp.initWessionServer_jsp.jspInit(initWessionServer_jsp.java:79)
+	at org.apache.jasper.runtime.HttpJspBase.init(HttpJspBase.java:48)
+	at org.apache.jasper.servlet.JspServletWrapper.getServlet(JspServletWrapper.java:179)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:375)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.init(JspServlet.java:138)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1227)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1140)
+	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:1027)
+	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:5038)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5348)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1408)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1398)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[16:38:33][ClusterManager.register-99][INFO] cluster node registry failed   : MERITZ1_C-MERITZ2_C
+[16:38:33][ClusterManager.initialize-60][INFO] ******** Cluster Manager Node Regist ********
+[16:38:34][ClusterManager.start-181][INFO] Cluster Manager Star *************
+[16:38:34][JournalManager.start-64][INFO] Start Wession Journal manager
+[16:38:34][JournalManager.start-66][INFO] journal start ------------------------>
+[16:38:34][JournalManager.jounralByNetwork-93][INFO] Jurnal 0 : 0
+[16:38:34][JournalFile.readJournalEntity-233][WARN] read error : MERITZ1_C_B 
+[16:38:34][JournalFile.getAll-208][INFO] dump repository size : 0 - 0
+[16:38:34][JournalManager.jounralByFile-102][INFO] Jurnal 0 : 0
+[16:38:34][JournalManager.start-70][INFO] journal end  ------------------------>
+[16:38:34][WessionDaemon.printStartLog-179][INFO] ***********************************************************************
+[16:45:51][WessionDaemon.printStopLog-187][INFO] ***********************************************************************
+[16:45:51][WessionDaemon.printStopLog-189][INFO] System Stop [MERITZ1_C] : 2020-02-11 16:45:51 (KST +0900)
+[16:45:51][WessionDaemon.printStopLog-190][INFO] ***********************************************************************
+[16:45:51][ClusterService.close-79][INFO] Service Closed : MERITZ1_C Cluster
+[16:45:51][WessionDaemon.stop-165][INFO] Wession Cluster Server[MERITZ1_C Cluster] Service closed
+[16:45:51][ClusterManager.stop-191][INFO] Cluster Manager Stop ************
+[16:45:51][JournalManager.stop-85][INFO] Stop Wession Journal manager
+[16:45:51][WessionSessionManager.stop-112][INFO] Stop Wession SessionManager
+[16:45:51][WessionDaemon.stop-169][INFO] Wession Daemon Stoped
+[16:45:51][WessionDaemon.printStopLog-187][INFO] ***********************************************************************

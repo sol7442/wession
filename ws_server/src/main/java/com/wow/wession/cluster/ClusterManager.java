@@ -247,6 +247,17 @@ public class ClusterManager implements IRepository , IManagerState{
 		}
 		weslogger.debug("add : parent[{}],session[{}]-{} ({})",parent,session,watch.stop(),cluster_list.size());
 	}
+	
+	public void remove(String key) {
+		StopWatch watch = new StopWatch(TimeUnit.NANOSECONDS);
+		ClusterEntity entity = new ClusterEntity(2);
+		entity.addData(key);
+		List<ClusterNode> cluster_list = getNodeList();
+		 for (ClusterNode node : cluster_list) {
+		    node.send(entity);
+		   }
+		 this.weslogger.debug("remove : key[{}]-{} ({})", new Object[] { key, Long.valueOf(watch.stop()), Integer.valueOf(cluster_list.size()) });
+	}
 	public void remove(String parent,String key) {
 		StopWatch  watch = new StopWatch(TimeUnit.NANOSECONDS);
 

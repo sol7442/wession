@@ -1,5 +1,4 @@
 
-
 buildscript {
     repositories {
         jcenter()
@@ -12,9 +11,10 @@ buildscript {
 
 
 apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'com.bmuschko.tomcat-base'
 apply plugin: 'eclipse-wtp'
 
-project.webAppDirName = 'WebContent'
+project.webAppDirName = 'meritz_c'
 eclipse {
     classpath {
         downloadSources = true
@@ -34,7 +34,7 @@ eclipse {
         // .settings 폴더의 org.eclipse.wst.common.component 파일을 설정한다.
         component {
             //contextPath = project.name // 원하는 contextPath 지정. 단, 빈 컨텍스트패스는 "/" 로 지정
-            contextPath = "WebContent" // 원하는 contextPath 지정. 단, 빈 컨텍스트패스는 "/" 로 지정
+            contextPath = project.webAppDirName // 원하는 contextPath 지정. 단, 빈 컨텍스트패스는 "/" 로 지정
         }
         // .settings 폴더의 org.eclipse.wst.common.project.facet.core.xml 파일을 설정한다.
         facet {
@@ -67,14 +67,12 @@ jar{
 	
 }
 
-task copyJar(group:'build', type:Copy){
-	
-
-}
-
 dependencies {
-	compile project(':ws_core')
-	compile project(':wow_server')
+	//compile project(':ws_core')
+	//compile project(':ws_server')
+	//compile project(':wow_server')
+	
+	compile fileTree(dir: "./${webAppDirName}/WEB-INF/lib", includes: ['*.jar'])
 	
 	compile files('../libs/xbean.jar')
 	compile files('../libs/xmlbeans-qname.jar')
@@ -89,7 +87,6 @@ dependencies {
            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 }
-
 
 tomcat {
     httpPort = 8080

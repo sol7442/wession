@@ -1,0 +1,2 @@
+[16:38:40][WessionSessionManager$2.run-186][INFO] create : session[Tue Feb 11 16:38:40 KST 2020 id,user(SSOAuth:com.wession.model.meritz.SSOAuth@51a01090)[Tue Feb 11 16:38:39 KST 2020 id,user(COMMAND:AGENT_SET_WESSION)(CODE:00),code]]-9289072
+[16:44:34][WessionSessionManager.remove-276][INFO] remove : key[id]-834571

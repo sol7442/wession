@@ -280,6 +280,9 @@ public class ClusterService implements IServiceHandler,IRepository, IManagerStat
 		}
 		return response;
 	}
+	public void remove(String key) {
+		WessionSessionManager.getInstance().remove(key,true);
+	}
 	public void remove(final String parent,final String key) {
 		WessionSessionManager.getInstance().remove(parent, key);
 	}

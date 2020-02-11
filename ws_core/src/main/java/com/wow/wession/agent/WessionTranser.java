@@ -26,7 +26,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import com.wow.wession.session.ISessionMessage;
 
 public class WessionTranser {
-	private HttpClient httpClient;
+	private HttpClient httpClient = null;
 	private PoolingHttpClientConnectionManager connection_mgr = new PoolingHttpClientConnectionManager();
 	private ExecutorService excutors;
 	private AtomicBoolean enable = new AtomicBoolean(true);
@@ -45,19 +45,17 @@ public class WessionTranser {
 		if(this.enable.get() == false){
 			throw new TransException("Object Enable false",TransException.ENABLE_FALSE );
 		}
-		
 		WessionAgentMessage res = null;
 		HttpPost  post = new HttpPost (url);
 		try {
 			SerializableEntity req_entity = new SerializableEntity(message, true);
-			post.setEntity(req_entity);		
-			HttpResponse response = httpClient.execute(post, HttpClientContext.create());
+			post.setEntity(req_entity);	
 			
+			HttpResponse response = httpClient.execute(post);
 			HttpEntity res_entity = response.getEntity();
 			long conents_length = res_entity.getContentLength();
 			byte[] buffer = new byte[10240];
 			int read_length = res_entity.getContent().read(buffer);
-			
 			int read_index  = 0;
 			while(buffer[read_index] == '\n'){
 				read_index++;
@@ -65,7 +63,6 @@ public class WessionTranser {
 					throw new TransException("RESPONSE CONTENTS ERROR ["+conents_length+"]["+read_index+"]", TransException.PARSER_ERROR);
 				}
 			}
-			
 			
 			if(read_index > 0){
 				System.out.println("ws out : invalid stream header 0a0a0a0a readObject bug fixed ["+conents_length+"]["+read_length+"]");
@@ -87,7 +84,13 @@ public class WessionTranser {
 			TransException ex = new TransException(e,TransException.PARAMETER_MISS);
 			ex.setUrl(url,message);
 			throw ex;
-		}finally{
+		} catch (Exception e) {
+			TransException ex = new TransException(e,TransException.NETWORK_ERROR);
+			ex.setUrl(url,message);
+			System.out.println(": " + e.getMessage());
+			throw ex;
+		}
+		finally{
 			post.releaseConnection();
 		}
 	    return res;

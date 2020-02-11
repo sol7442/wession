@@ -1,0 +1,94 @@
+.sidebar {
+  width: 220px;
+  height: 100%;
+  float: left;
+  background-color: #f5f5f5;
+  color: #555;
+  overflow: hidden;
+  font-size: 13px;
+}
+.sidebar-nav {
+  border-bottom: 1px solid #e0e0e0;
+}
+.sidebar-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.sidebar-nav ul li,
+.sidebar-nav ul a {
+  display: block;
+  border-color: #e5e5e5;
+}
+.sidebar-nav ul li.title {
+  border-top: 1px solid #eee;
+  padding: 20px 20px 10px 20px;
+  font-weight: 300;
+  color: #585858;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+}
+.sidebar-nav ul a {
+  padding: 10px 20px;
+  color: #555;
+  border-top: 1px solid #eee;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
+}
+.sidebar-nav ul a i {
+  margin-right: 10px;
+}
+.sidebar-nav ul a:hover,
+.sidebar-nav ul a:focus,
+.sidebar-nav ul a:active,
+.sidebar-nav ul li.active a {
+  color: #2879b1;
+  text-decoration: none;
+  background-image: -webkit-linear-gradient(left, color-stop(#629cc9 5px), color-stop(#fff 5px));
+  background-image: linear-gradient(to right, #629cc9 5px, #fff 5px);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#629cc9', endColorstr='#fff', GradientType=1);
+}
+.active {
+  color: #2879b1;
+  text-decoration: none;
+  background-image: -webkit-linear-gradient(left, color-stop(#629cc9 5px), color-stop(#fff 5px));
+  background-image: linear-gradient(to right, #629cc9 5px, #fff 5px);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#629cc9', endColorstr='#fff', GradientType=1);
+}
+.sidebar-nav ul ul a {
+  padding: 10px 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.01em;
+  font-weight: 300;
+  color: #585858;
+}
+.sidebar-nav ul ul a:hover,
+.sidebar-nav ul ul a:focus,
+.sidebar-nav ul ul a:active {
+  background-color: rgba(255, 255, 255, 0.2);
+  background-image: none;
+  color: #2b7dbc;
+}
+.sidebar-nav ul ul a:hover i,
+.sidebar-nav ul ul a:focus i,
+.sidebar-nav ul ul a:active i {
+  color: #c86139;
+}
+
+.sidebar-nav-item {
+  padding-left: 5px;
+}
+.sidebar-nav-item-icon {
+  padding-right: 5px;
+}
+.sidebar-nav ul li.active {
+  background-color: #fff;
+  color: #2b7dbc;
+}
+/*
+.sidebar-nav ul li.active a {
+  background-color: #fff;
+  background-image: none;
+}
+*/

@@ -147,6 +147,17 @@ public class JournalManager implements IRepository, IManagerState {
 		this.journalFile.append(entity);
 		weslogger.debug("add : parent[{}],session[{}]-{}",parent,session,watch.stop());
 	}
+	
+	public void remove(String key)	{
+		if (!this.useable) return;
+
+		StopWatch watch = new StopWatch(TimeUnit.NANOSECONDS);
+		JournalEntity entity = new JournalEntity(2);
+		entity.addData(key);
+		this.journalFile.append(entity);
+		this.weslogger.debug("remove : key[{}]-{}", key, Long.valueOf(watch.stop()));
+	}
+
 	public void remove(final String parent,final String key) {
 		if(!useable){return;}
 		

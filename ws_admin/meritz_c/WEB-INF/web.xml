@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	<context-param>
+		<param-name>JDBC_URL</param-name>
+		<param-value>java:/comp/env/jdbc/meritzDB_c</param-value>
+		<!-- param-value>dsDbeptdSo01</param-value -->
+		<description>JDBC_URL For Meritzfire</description>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>initWession</servlet-name>
+		<jsp-file>/initWessionServer.jsp</jsp-file>
+		<init-param>
+			<param-name>instance.1</param-name>
+			<param-value>WSSVR01</param-value>
+		</init-param>
+		<init-param>
+			<param-name>instance.2</param-name>
+			<param-value>WSSVR02</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>anticipated.min</param-name>
+			<param-value>10</param-value>
+		</init-param>
+				
+
+
+		<!-- 솔루션 개발/테스트용 -->
+		<init-param>
+			<param-name>path.WSSVR01</param-name>
+			<param-value>D:/workspace/git/wession/ws_admin/meritz_c/WEB-INF</param-value>
+			<description>MAC BOOK 개발환경 기본 path(절대경로)</description>
+		</init-param>
+		<init-param>
+			<param-name>daemon.name.WSSVR01</param-name>
+			<param-value>MERITZ1_C</param-value>
+			<description>데몬 이름</description>
+		</init-param>
+		<init-param>
+			<param-name>server.config.WSSVR01</param-name>
+			<param-value>/config/wession_meritz_dev1.xml</param-value>
+			<description>MAC BOOK 개발환경</description>
+		</init-param>
+		<init-param>
+			<param-name>log.path.WSSVR01</param-name>
+			<param-value>D:/workspace/git/wession/logs</param-value>
+			<description>MAC BOOK 개발환경 로그 적재위치</description>
+		</init-param>
+		
+		<!--  WEB.xml 추가 사항 , 2014-09-17 -->
+		<init-param>
+			<param-name>serviceURL.WSSVR01</param-name>
+			<param-value>http://meritzc.wession.com:8080/c_service.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>serviceURL.WSSVR02</param-name>
+			<param-value>http://meritzc.wession.com:18090/c_service.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>monitorURL.WSSVR01</param-name>
+			<param-value>http://meritzc.wession.com:8080/wession/monitor_jvm</param-value>
+		</init-param>
+		<init-param>
+			<param-name>monitorURL.WSSVR02</param-name>
+			<param-value>http://meritzc.wession.com:18090/wession/monitor_jvm</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>monitor_jvm</servlet-name>
+		<servlet-class>com.wession.servlet.Monitor</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>policy_adopt</servlet-name>
+		<servlet-class>com.wession.servlet.Policy</servlet-class>
+	</servlet>
+		
+	<!-- MAPPING  -->
+	
+	<servlet-mapping>
+		<servlet-name>initWession</servlet-name>
+		<url-pattern>/initWessionServer.jsp</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>monitor_jvm</servlet-name>
+		<url-pattern>/wession/monitor_jvm</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>policy_adopt</servlet-name>
+		<url-pattern>/wession/policy_adopt</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<resource-ref>
+		<description>mySQL Connection</description>
+		<res-ref-name>jdbc/meritzDB_c</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+</web-app>
+
